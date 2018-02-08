@@ -10,6 +10,12 @@ $("#bokahtml").on("click", function () {
     });
 });
 
+$("#gallerihtml").on("click", function () {
+    $.get("/galleri", function (file) {
+        $("#container").replaceWith(file);
+    });
+});
+
 $("#villkorhtml").on("click", function () {
     $.get("/villkor", function (file) {
         $("#container").replaceWith(file);
