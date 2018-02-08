@@ -13,8 +13,20 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var dbdata = [];
+database.ref("users").on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+        var childData = childSnapshot.val();
+        dbdata.push(childData);
+    });
+});
+
 exports.admindata = function (res) {
-    res.send(getData());
+    var dbdata = [];
+    dbdata = getData();
+
+    console.log(dbdata);
+    res.send(dbdata);
 }
 
 exports.sendpost = function (data, res) {
@@ -67,17 +79,13 @@ exports.sendpost = function (data, res) {
     }
 }
 
-
 function getData() {
     var dbdata = [];
     database.ref("users").on('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            //console.log(childData);
             dbdata.push(childData);
         });
     });
-    // console.log("Retrieved data from database:");
-    // console.log(dbdata);
     return dbdata;
 }

@@ -1,0 +1,49 @@
+<div class="container" id="container">
+
+
+    <form name="bookingform" id="bookingform"  onsubmit="return false">
+        <label>Vecka/or</label>
+        <input placeholder='Exempel: 29,30' required />
+        <br>
+        <label>Att betala</label>
+        <input placeholder='Exempel: 9 000:-' required />
+        <br>
+        <label>Förnamn</label>
+        <input required />
+        <br>
+        <label>Efternamn</label>
+        <input required />
+        <br>
+        <label>Personnummer</label>
+        <input required />
+        <br>
+        <label>Adress</label>
+        <input required />
+        <br>
+        <label>Postnummer</label>
+        <input required />
+        <br>
+        <label>Ort</label>
+        <input required />
+        <br>
+        <label>Telefon</label>
+        <input />
+        <br>
+        <label>Mail</label>
+        <input required />
+        <br>
+        <label>Bokningsdatum</label>
+        <input id=datum readonly />
+        <br>
+        <label> </label>
+        <button id=submit type=submit>Sänd</button>
+        <span style=font-size:12px;color:blue;>Alla fält måste fyllas i</span>
+        <hr>
+        <section style=color:white;background-color:gray;>
+            När du skickat din bokning kommer du att få ett mail som bekräfar din bokning där du också kommer att få all info du behöver
+            för att betala bokningen, hur du tillträder(nyckel etc). Bekräftelsemailet kan ta ngn eller några dagar men ditt
+            bokningsdatum avgör turordningen
+        </section>
+    </form>
+    <script src="../js/form.js" defer></script>
+</div>
