@@ -51,6 +51,13 @@ app.get('/boka', function (req, res) {
     });
 });
 
+app.get('/galleri', function (req, res) {
+    fs.readFile('public/html/galleri.html', function (err, data) {
+        if (err) throw err;
+        res.send(data);
+    });
+});
+
 app.get('/villkor', function (req, res) {
     fs.readFile('public/html/villkor.html', function (err, data) {
         if (err) throw err;
