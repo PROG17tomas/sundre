@@ -1,0 +1,96 @@
+<div class="container bg-light" id="container">
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Hyr Sundre gamla skola från 3 500:-/v 2018</h1>
+        </div>
+    </div>
+   
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <img src="../img/skolan.jpg" class="img-responsive rounded mt-2" id="displaypic">
+        </div>
+    </div>
+
+    
+    <!-- <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <a href="#" class="thumbnail">
+            <img class="myImg imagepreviews" src="../img/rum.jpg" alt="Rum 1">
+          </a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img class="myImg imagepreviews" src="../img/rum2.jpg" alt="Rum 2">
+            </a>
+          </div>
+      </div>  -->
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <img class="myImg imagepreviews" src="../img/rum.jpg" alt="Rum 1">
+        <!-- </div>
+        <div class="col-md-2 col-lg-2"> -->
+            <img class="myImg imagepreviews" src="../img/rum2.jpg" alt="Rum 2">
+        <!-- </div>
+        <div class="col-md-2 col-lg-2"> -->
+            <img class="myImg imagepreviews" src="../img/kök.jpg" alt="Köket">
+        <!-- </div>
+        <div class="col-md-2 col-lg-2"> -->
+            <img class="myImg imagepreviews" src="../img/kök2.jpg" alt="Köket">
+        <!-- </div>
+        <div class="col-md-2 col-lg-2"> -->
+            <img class="myImg imagepreviews" src="../img/kyrkan.jpg" alt="Vy från luften">
+        <!-- </div>         -->
+        <!-- <div class="col-md-2 col-lg-2"> -->
+            <img class="myImg imagepreviews" src="../img/trädgård2.jpg" alt="Trädgården">
+        </div>
+      </div>
+
+    <!-- <div class="row text-center mt-2">
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/rum.jpg" alt="Rum 1">
+        </div>
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/rum2.jpg" alt="Rum 2">
+        </div>
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/kök.jpg" alt="Köket">
+        </div>
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/kök2.jpg" alt="Köket">
+        </div>
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/kyrkan.jpg" alt="Vy från luften">
+        </div>
+        <div class="col">
+            <img class="myImg imagepreviews" src="../img/trädgård2.jpg" alt="Trädgården">
+        </div>
+    </div> -->
+
+    <script>
+        var modal = document.getElementById('myModal');
+
+        var img = document.getElementsByClassName("myImg");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+
+        for (let i = 0; i < img.length; i++) {
+            img[i].onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        }
+
+        document.getElementById("myModal").onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
+</div>

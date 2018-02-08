@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sundre skola</title>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-year-calendar.css">
+    <!-- jQuery library -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- <script src="js/bootstrap-year-calendar.js"></script> -->
+    <script src="js/script.js" defer></script>
+
+    <link rel="stylesheet" href="css/imgmodal.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container" id="navcontainer">
+        <nav class="navbar navbar-default">
+            <a class="navbar-brand" href="#" id="starthtml">Sundre skola</a>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="bokahtml">Bokning/priser</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="villkorhtml">Villkor</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="omgivninghtml">Omgivning</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="hittahtml">Hitta hit</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="historiahtml">Historia</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- /.navbar-collapse -->
+
+    <!-- /.container-fluid -->
+
+    <!-- </div> -->
+
+    <div class="container" id="container">
+        <script>
+            $(document).ready(function () {
+                $.get("/start", function (file) {
+                    $("#container").replaceWith(file);
+                });
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
