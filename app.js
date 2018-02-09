@@ -85,6 +85,13 @@ app.get('/historia', function (req, res) {
         res.send(data);
     });
 });
+
+app.get('/bokning', function (req, res) {
+    fs.readFile('public/html/temp_boka.html', function (err, data) {
+        if (err) throw err;
+        res.send(data);
+    });
+});
 // End
 // =====================
 

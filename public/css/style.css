@@ -65,3 +65,7 @@ li{
 #footer-text {
     display: block;
 }
+
+label{
+    display: block;
+}
