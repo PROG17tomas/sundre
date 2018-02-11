@@ -43,4 +43,32 @@ li{
 
 #yearcal{
     min-height: 80vh;
+<<<<<<< HEAD
+=======
+}
+
+#footer {
+    margin-top: 2em;
+    background-color: lightgray;
+}
+
+#footer-header {
+    font-size: 24px;
+    font-style: italic;
+    border-bottom: 2px solid red;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+#footer-right {
+    /* display: block; */
+}
+
+#footer-text {
+    display: block;
+}
+
+label{
+    display: block;
+>>>>>>> 8f73ad2917ce0923c607d8aac7ca22022d7dc1b1
 }
