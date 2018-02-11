@@ -89,3 +89,10 @@ function getData() {
     });
     return dbdata;
 }
+exports.getDbData = function () {
+    var dbdata = [];
+    dbdata = getData();
+
+    
+    res.send(dbdata);
+}
