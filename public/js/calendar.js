@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(function() {
     var currentYear = new Date().getFullYear();
     $('#calendar').calendar({ 
@@ -67,7 +66,6 @@ $(function() {
 //     })
 //     console.log("bajs");
 // })();
-=======
 $(function () {
     //var dateNow = new Date();
 
@@ -117,4 +115,3 @@ function disabledDateTest() {
         }
     });
 }
->>>>>>> c1d2a9947a91a6bd888380033bdad691f53dfa1d
