@@ -1,4 +1,4 @@
-document.getElementById("datum").value = new Date().toLocaleDateString();
+document.getElementById("bookingdate").value = new Date().toLocaleDateString();
 
 $('#bookingform').submit(function() {
     var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum"];

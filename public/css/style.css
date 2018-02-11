@@ -41,15 +41,33 @@ li{
     padding-right: 0px;
 }
 
-#yearcal{
+/* #yearcal{
     min-height: 80vh;
-}
+} */
 
 #footer {
     margin-top: 2em;
     background-color: lightgray;
 }
 
-label{
+/* label{
     display: block;
+} */
+
+#booking-form-warning {
+    margin-left: 2em;
+    font-size: 18px;
+}
+
+#booking-form-text {
+    margin-top: 2em;
+    margin-bottom: 5em;
+    padding: 1em;
+
+    /* background-color: lightblue; */
+    /* border: 2px solid rgb(0, 90, 200); */
+
+    background-color: lightgray;
+    border: 2px solid gray;
+    border-radius: 10px;
 }

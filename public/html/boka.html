@@ -1,55 +1,80 @@
 <div class="container" id="container">
     <div class="row">
-        <div class="col-md-4 text-left">
+        <div class="col-md-4">
             <form name="bookingform" id="bookingform" onsubmit="return false">
-                <label>Vecka/or</label>
-                <input placeholder='Exempel: 29,30' required />
-                <br>
-                <label>Att betala</label>
-                <input placeholder='Exempel: 9 000:-' required />
-                <br>
-                <label>Förnamn</label>
-                <input required />
-                <br>
-                <label>Efternamn</label>
-                <input required />
-                <br>
-                <label>Personnummer</label>
-                <input required />
-                <br>
-                <label>Adress</label>
-                <input required />
-                <br>
-                <label>Postnummer</label>
-                <input required />
-                <br>
-                <label>Ort</label>
-                <input required />
-                <br>
-                <label>Telefon</label>
-                <input />
-                <br>
-                <label>Mail</label>
-                <input required />
-                <br>
-                <label>Bokningsdatum</label>
-                <input id=datum readonly />
-                <br>
-                <label> </label>
-                <button id=submit type=submit>Sänd</button>
-                <span style=font-size:12px;color:blue;>Alla fält måste fyllas i</span>
-                <hr>
-                <section style=color:white;background-color:gray;>
-                    När du skickat din bokning kommer du att få ett mail som bekräfar din bokning där du också kommer att få all info du behöver
-                    för att betala bokningen, hur du tillträder(nyckel etc). Bekräftelsemailet kan ta ngn eller några dagar
-                    men ditt bokningsdatum avgör turordningen
-                </section>
+                <div class="form-group">
+                    <label for="week">Vecka/or:</label>
+                    <input id="week" class="form-control" placeholder='Exempel: 29,30' required />
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Att betala:</label>
+                    <input id="price" class="form-control" placeholder='Exempel: 9 000:-' required />
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname">Förnamn:</label>
+                    <input id="firstname" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Efternamn:</label>
+                    <input id="lastname" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="pnumber">Personnummer:</label>
+                    <input id="pnumber" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Adress:</label>
+                    <input id="address" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Postnummer:</label>
+                    <input id="zip" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Ort:</label>
+                    <input id="city" class="form-control" type="text" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefon:</label>
+                    <input id="phone" class="form-control" type="text" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Mail:</label>
+                    <input id="email" class="form-control" type="email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingdate">Bokningsdatum:</label>
+                    <input id="bookingdate" class="form-control" type="datetime-local" readonly />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Skicka</button>
+                <span class="text-danger" id="booking-form-warning">Alla fält måste fyllas i!</span>
             </form>
+
+
+            <div id="booking-form-text">
+                När du skickat din bokning kommer du att få ett mail som bekräfar din bokning där du också kommer att få all info du behöver
+                för att betala bokningen, hur du tillträder(nyckel etc). Bekräftelsemailet kan ta någon eller några dagar
+                men ditt bokningsdatum avgör turordningen.
+            </div>
+
             <script src="../js/form.js" defer></script>
         </div>
         <div class="col-md-8">
-            <div data-provide="calendar" id="yearcal"></div>
+            <!-- <div data-provide="calendar" id="yearcal"></div> -->
+            <div id="yearcal"></div>
         </div>
     </div>
 </div>
 <script src="../js/bootstrap-year-calendar.js"></script>
+<script src="../js/calendar.js"></script>
