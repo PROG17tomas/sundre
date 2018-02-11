@@ -41,27 +41,33 @@ li{
     padding-right: 0px;
 }
 
-#yearcal{
+/* #yearcal{
     min-height: 80vh;
-}
+} */
 
 #footer {
     margin-top: 2em;
     background-color: lightgray;
 }
 
-#footer-header {
-    font-size: 24px;
-    font-style: italic;
-    border-bottom: 2px solid red;
-    margin-top: 1em;
-    margin-left: 1em;
-}
-
-#footer-right {
-    /* display: block; */
-}
-
-#footer-text {
+/* label{
     display: block;
+} */
+
+#booking-form-warning {
+    margin-left: 2em;
+    font-size: 18px;
+}
+
+#booking-form-text {
+    margin-top: 2em;
+    margin-bottom: 5em;
+    padding: 1em;
+
+    /* background-color: lightblue; */
+    /* border: 2px solid rgb(0, 90, 200); */
+
+    background-color: lightgray;
+    border: 2px solid gray;
+    border-radius: 10px;
 }
