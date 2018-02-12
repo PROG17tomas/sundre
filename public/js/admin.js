@@ -2,7 +2,7 @@ $(document).ready(loadData());
 
 function loadData() {
     $.get("/admin41data", function (dbdata) {
-        var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum"];
+        var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum", "status"];
         console.log("från klient");
         console.log(dbdata);
         var v = dbdata.map((x, i) => {

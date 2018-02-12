@@ -87,12 +87,6 @@ app.get('/historia', function (req, res) {
     });
 });
 
-app.get('/bokning', function (req, res) {
-    fs.readFile('public/html/temp_boka.html', function (err, data) {
-        if (err) throw err;
-        res.send(data);
-    });
-});
 // End
 // =====================
 //Calendar request handling
