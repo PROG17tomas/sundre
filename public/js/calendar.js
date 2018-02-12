@@ -1,3 +1,4 @@
+
 // $(function() {
 //     var currentYear = new Date().getFullYear();
 //     $('#calendar').calendar({ 
@@ -25,68 +26,50 @@
 //     });
 // });
 
-// function getBookedWeeksFromDb(){
-//     var bookedWeeks = [];
-//     var obj = getDbData();
-//     obj.forEach(x => {
-//         var tmp = x.vecka.split(',');
-//         tmp.forEach(y => {
-//             bookedWeeks.push(y);
-//         });
-//         return bookedWeeks;
-//     });}
-
-// function getDateRangeOfWeek(weekNo){
-//     var d1 = new Date();
-//     numOfdaysPastSinceLastMonday = eval(d1.getDay()- 1);
-//     d1.setDate(d1.getDate() - numOfdaysPastSinceLastMonday);
-//     var weekNoToday = d1.getWeek();
-//     var weeksInTheFuture = eval( weekNo - weekNoToday );
-//     d1.setDate(d1.getDate() + eval( 7 * weeksInTheFuture ));
-//     var rangeIsFrom = eval(d1.getMonth()+1) +"," + d1.getDate();
-//     d1.setDate(d1.getDate() + 6);
-//     var rangeIsTo = eval(d1.getMonth()+1) +"," + d1.getDate();
-//     return rangeIsFrom + "/" + rangeIsTo;
-// };
-
-// Date.prototype.getWeek = function() {
-// var onejan = new Date(this.getFullYear(),0,1);
-// return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
-// }
-
-// (function(){
-//     var bookedDates = [];
-//     var poop = getBookedWeeksFromDb();
-//     var poop = ["2,4/2,11", "3,4/3,11"]
-//     poop.forEach(o => {
-//         bookedDates.push(getDateRangeOfWeek(o));
-//     });
-//     poop.forEach(u => {
-//         console.log(u);
-//     })
-//     console.log("bajs");
-// })();
-$(function () {
-    //var dateNow = new Date();
-
-    // $('#yearcal').calendar({
-    //     displayWeekNumber: true,
-    //     enableRangeSelection: true,
-    //     minDate: dateNow
-    // });
-
-    disabledDateTest();
-});
 
 
-function disabledDateTest() {
+
+$(document).ready(loadBookedWeeks());
+
+
+
+function loadBookedWeeks() {
+    $.get("/calendardata", function (bookedWeeks){
+        
+        console.log(bookedWeeks);
+        var dates = [];
+        bookedWeeks.forEach(x => {
+            dates.push(getDateFromWeeks(x -1));
+            
+        });
+        
+        
+       console.log("Veckor test!");
+       console.log(dates); 
+       drawbookedWeeks(dates);
+        
+    });
+}
+
+function getDateFromWeeks(week){
+    var date = moment('2018').add(week, 'weeks').toDate();
+    return date;
+}
+
+function drawbookedWeeks(dates) {
     var dateNow = new Date();
     var currentYear = new Date().getFullYear();
 
     var confirmedDate = [];
-    for (let i = 0; i < 7; i++) {
-        confirmedDate.push(new Date(currentYear, 3, 16 + i).getTime());
-    }
+    dates.forEach(x => {
+        var date = moment(x).date();
+        var month = moment(x).month();
+        console.log(date);
+        for (let i = 0; i < 7; i++) {
+            confirmedDate.push(new Date(currentYear, month, date + i).getTime());
+        }
+        
+    });
 
     var nonConfirmedDate = [];
     for (let i = 0; i < 7; i++) {
@@ -106,12 +89,14 @@ function disabledDateTest() {
                 }
             });
 
-            nonConfirmedDate.forEach(x => {
-                if (date.getTime() == x) {
-                    $(element).css('background-color', 'yellow');
-                    $(element).css('border-radius', '15px');
-                }
-            });
-        }
+                nonConfirmedDate.forEach(x => {
+                    if (date.getTime() == x) {
+                        $(element).css('background-color', 'yellow');
+                        $(element).css('border-radius', '15px');
+                    }
+                });
+        }   
     });
 }
+
+

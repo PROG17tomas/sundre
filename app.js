@@ -14,7 +14,6 @@ app.use(express.static('public'));
 app.get('/admin41', function (req, res) {
     res.sendFile(__dirname + "/public/admin41.html");
 });
-
 app.get('/admin41data', function (req, res) {
     fire.admindata(res);
     return false;
@@ -23,6 +22,8 @@ app.get('/admin41data', function (req, res) {
 // =====================
 
 
+// End
+// =====================
 
 // Booking handling
 // ================
@@ -94,10 +95,12 @@ app.get('/bokning', function (req, res) {
 });
 // End
 // =====================
-
-//testar
-
-//testar igen
+//Calendar request handling
+// =====================
+app.get('/calendardata', function (req, res) {
+    fire.getDb(res);
+    return false;
+});
 
 
 //port

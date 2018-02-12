@@ -13,6 +13,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
+
 var dbdata = [];
 database.ref("users").on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
@@ -89,10 +91,18 @@ function getData() {
     });
     return dbdata;
 }
-exports.getDbData = function () {
+
+exports.getDb = function (res) {
     var dbdata = [];
     dbdata = getData();
 
+    var bookedWeeks = [];
     
-    res.send(dbdata);
+    dbdata.forEach(x => {
+        var tmp = x.vecka.split(',');
+        tmp.forEach(y => {
+            bookedWeeks.push(y);
+        });
+    });
+    res.send(bookedWeeks);
 }
