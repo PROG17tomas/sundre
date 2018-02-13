@@ -8,7 +8,10 @@ $('#bookingform').submit(function () {
         obj[props[i]] = x.value;
     });
 
-    $.post("/nybokning", obj, function (file) {
-        $("#container").replaceWith(file);
+    $.post("/nybokning", obj, function (result) {
+        if (result != false)
+            $("#container").replaceWith(result);
+        else
+            alert("Tyvärr är veckan redan bokad!");
     });
 });

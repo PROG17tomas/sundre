@@ -20,8 +20,7 @@ app.get('/admin41data', async function (req, res) {
 app.post('/admin41confirm', async function (req, res) {
     //console.log(req.body.week);
     var result = await fire.adminconfirm(req.body.week);
-    //console.log(result);
-    res.sendFile(__dirname + "/public/admin41.html");
+    res.send(result);
 });
 // End
 // =====================
@@ -32,9 +31,17 @@ app.post('/admin41confirm', async function (req, res) {
 
 // Booking handling
 // ================
-app.post('/nybokning', function (req, res) {
-    fire.sendpost(req.body, res);
-    return false;
+app.post('/nybokning', async function (req, res) {
+    var result = await fire.sendpost(req.body);
+    if(result) {
+        fs.readFile('public/html/success.html', function (err, data) {
+            if (err) throw err;
+            res.send(data);
+        });
+    }
+    else {
+        res.send(false);
+    }
 });
 // End
 // =====================
