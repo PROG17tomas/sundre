@@ -13,7 +13,6 @@ li{
     font-weight: bold;
 }
 
-
 .whitespace{
     color: white;
 }
@@ -41,10 +40,6 @@ li{
     padding-right: 0px;
 }
 
-/* #yearcal{
-    min-height: 80vh;
-} */
-
 #footer {
     margin-top: 2em;
     background-color: lightgray;
@@ -53,6 +48,13 @@ li{
 /* label{
     display: block;
 } */
+
+
+
+
+
+/* Booking form & calendar styling
+   =============================== */
 
 #booking-form-warning {
     margin-left: 2em;
@@ -70,4 +72,16 @@ li{
     background-color: lightgray;
     border: 2px solid gray;
     border-radius: 10px;
+}
+
+#yearcal{
+    min-height: 100vh;
+}
+
+.confirmedDate {
+    border: 1px solid red;
+}
+
+.nonConfirmedDate {
+    border: 1px dotted yellow;
 }

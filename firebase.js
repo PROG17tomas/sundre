@@ -13,25 +13,37 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// var dbdata = [];
+// database.ref("users").on('value', function (snapshot) {
+//     snapshot.forEach(function (childSnapshot) {
+//         var childData = childSnapshot.val();
+//         dbdata.push(childData);
+//     });
+// });
 
 
-var dbdata = [];
-database.ref("users").on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
-        dbdata.push(childData);
-    });
-});
 
-exports.admindata = function (res) {
-    var dbdata = [];
-    dbdata = getData();
+// Exported functions
+// ==================
 
-    console.log(dbdata);
-    res.send(dbdata);
+exports.admindata = async function () {
+    // var dbdata = [];
+    // dbdata = await getData();
+    return await getData();
 }
 
-exports.sendpost = function (data, res) {
+exports.adminconfirm = async function (data) {
+    // uppdatera en specifik post med hjälp av 'vecka' i data
+    var dbdata = [];
+    dbdata = await getData();
+
+    //dbdata.find(x=>x
+    // byt true till false och false till true på data.vecka == data
+
+    return true;
+}
+
+exports.sendpost = async function (data, res) {
     let failed = false;
 
     // kolla om någon input är tom
@@ -49,7 +61,7 @@ exports.sendpost = function (data, res) {
     // kolla om veckan är upptagen
     // ===========================
     var bookedWeeks = [];
-    var obj = getData();
+    var obj = await getData();
     obj.forEach(x => {
         var tmp = x.vecka.split(',');
         tmp.forEach(y => {
@@ -59,6 +71,7 @@ exports.sendpost = function (data, res) {
 
     var weeksToBook = data.vecka.split(',');
     weeksToBook.forEach(i => {
+        if (!(i >= 1 && i <= 52)) failed = true;
         if (bookedWeeks.find(x => x.trim() == i.trim())) failed = true;
     });
     console.log("Veckor att boka: " + weeksToBook);
@@ -73,6 +86,8 @@ exports.sendpost = function (data, res) {
         });
     }
     else {          // validation succeeded
+        data.status = false;
+        console.log(data);
         database.ref('users').push(data);
         fs.readFile('public/html/success.html', function (err, data) {
             if (err) throw err;
@@ -81,23 +96,12 @@ exports.sendpost = function (data, res) {
     }
 }
 
-function getData() {
+exports.getDb = async function (res) {
     var dbdata = [];
-    database.ref("users").on('value', function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var childData = childSnapshot.val();
-            dbdata.push(childData);
-        });
-    });
-    return dbdata;
-}
-
-exports.getDb = function (res) {
-    var dbdata = [];
-    dbdata = getData();
+    dbdata = await getData();
 
     var bookedWeeks = [];
-    
+
     dbdata.forEach(x => {
         var tmp = x.vecka.split(',');
         tmp.forEach(y => {
@@ -105,4 +109,21 @@ exports.getDb = function (res) {
         });
     });
     res.send(bookedWeeks);
+}
+
+
+
+
+// Internal functions
+// ==================
+
+async function getData() {
+    var dbdata = [];
+    await database.ref("users").once('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            dbdata.push(childData);
+        });
+    });
+    return dbdata;
 }

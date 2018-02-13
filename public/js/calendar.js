@@ -1,4 +1,3 @@
-
 // $(function() {
 //     var currentYear = new Date().getFullYear();
 //     $('#calendar').calendar({ 
@@ -21,44 +20,36 @@
 //                 startDate: new Date(currentYear, 4, 28),
 //                 endDate: new Date(currentYear, 4, 29)
 //             }],
-    
+
 //         displayWeekNumber: true
 //     });
 // });
 
-
-
+var currentYear = new Date().getFullYear();
 
 $(document).ready(loadBookedWeeks());
 
-
-
 function loadBookedWeeks() {
-    $.get("/calendardata", function (bookedWeeks){
-        
+    $.get("/calendardata", function (bookedWeeks) {
         console.log(bookedWeeks);
         var dates = [];
         bookedWeeks.forEach(x => {
-            dates.push(getDateFromWeeks(x -1));
-            
+            dates.push(getDateFromWeeks(x - 1));
         });
-        
-        
-       console.log("Veckor test!");
-       console.log(dates); 
-       drawbookedWeeks(dates);
-        
+        console.log("Veckor test!");
+        console.log(dates);
+        drawbookedWeeks(dates);
     });
 }
 
-function getDateFromWeeks(week){
-    var date = moment('2018').add(week, 'weeks').toDate();
+function getDateFromWeeks(week) {
+    var date = moment(currentYear).add(week, 'weeks').toDate();
     return date;
 }
 
 function drawbookedWeeks(dates) {
     var dateNow = new Date();
-    var currentYear = new Date().getFullYear();
+
 
     var confirmedDate = [];
     dates.forEach(x => {
@@ -68,13 +59,13 @@ function drawbookedWeeks(dates) {
         for (let i = 0; i < 7; i++) {
             confirmedDate.push(new Date(currentYear, month, date + i).getTime());
         }
-        
+
     });
 
     var nonConfirmedDate = [];
-    for (let i = 0; i < 7; i++) {
-        nonConfirmedDate.push(new Date(currentYear, 4, 14 + i).getTime());
-    }
+    // for (let i = 0; i < 7; i++) {
+    //     nonConfirmedDate.push(new Date(currentYear, 4, 14 + i).getTime());
+    // }
 
     $('#yearcal').calendar({
         displayWeekNumber: true,
@@ -83,20 +74,20 @@ function drawbookedWeeks(dates) {
         customDayRenderer: function (element, date) {
             confirmedDate.forEach(x => {
                 if (date.getTime() == x) {
-                    $(element).css('background-color', 'red');
-                    $(element).css('color', 'white');
-                    $(element).css('border-radius', '15px');
+                    $(element).addClass('confirmedDate');
+                    // $(element).css('background-color', 'red');
+                    // $(element).css('color', 'white');
+                    // $(element).css('border-radius', '15px');
                 }
             });
 
-                nonConfirmedDate.forEach(x => {
-                    if (date.getTime() == x) {
-                        $(element).css('background-color', 'yellow');
-                        $(element).css('border-radius', '15px');
-                    }
-                });
-        }   
+            nonConfirmedDate.forEach(x => {
+                if (date.getTime() == x) {
+                    $(element).addClass('nonConfirmedDate');
+                    // $(element).css('background-color', 'yellow');
+                    // $(element).css('border-radius', '15px');
+                }
+            });
+        }
     });
 }
-
-

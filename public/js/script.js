@@ -40,8 +40,8 @@ $("#historiahtml").on("click", function () {
     });
 });
 
-$("#temp_bokahtml").on("click", function () {
-    $.get("/bokning", function (file) {
-        $("#container").replaceWith(file);
-    });
-});
+// $("#temp_bokahtml").on("click", function () {
+//     $.get("/bokning", function (file) {
+//         $("#container").replaceWith(file);
+//     });
+// });

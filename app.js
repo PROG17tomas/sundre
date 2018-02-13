@@ -14,9 +14,14 @@ app.use(express.static('public'));
 app.get('/admin41', function (req, res) {
     res.sendFile(__dirname + "/public/admin41.html");
 });
-app.get('/admin41data', function (req, res) {
-    fire.admindata(res);
-    return false;
+app.get('/admin41data', async function (req, res) {
+    res.send(await fire.admindata(res));
+});
+app.post('/admin41confirm', async function (req, res) {
+    //console.log(req.body.week);
+    var result = await fire.adminconfirm(req.body.week);
+    //console.log(result);
+    res.sendFile(__dirname + "/public/admin41.html");
 });
 // End
 // =====================
@@ -88,6 +93,9 @@ app.get('/historia', function (req, res) {
 });
 
 // End
+
+
+
 // =====================
 //Calendar request handling
 // =====================
