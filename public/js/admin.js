@@ -14,7 +14,7 @@ function loadData() {
                 if (props[j] == "status") {
                     if (x[props[j]]) btnType = "btn-success";
                     else btnType = "btn-danger";
-                    rad += `<td><button onclick="confirm(${x["vecka"]})" class="btn ${btnType}">${x[props[j]]}</button></td>`;
+                    rad += `<td><button onclick="confirm('${x["vecka"]}')" class="btn ${btnType}">${x[props[j]]}</button></td>`;
                 }
                 else
                     rad += "<td>" + x[props[j]] + "</td>";
@@ -26,6 +26,7 @@ function loadData() {
 }
 
 function confirm(week) {
+    console.log(week);
     $.post('/admin41confirm', { "week": week });
     //loadData();
 }
