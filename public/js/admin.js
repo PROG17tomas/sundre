@@ -27,5 +27,5 @@ function loadData() {
 
 function confirm(week) {
     $.post('/admin41confirm', { "week": week });
-    //loadData();
+    loadData();
 }

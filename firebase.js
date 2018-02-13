@@ -36,7 +36,31 @@ exports.adminconfirm = async function (data) {
     // uppdatera en specifik post med hjälp av 'vecka' i data
     var dbdata = [];
     dbdata = await getData();
+    var nystatus = false;
 
+    var bokning = dbdata.find(function(x) {
+        return x.vecka == data;
+      });
+      
+      if(bokning.status == false){
+          nystatus = true;
+      }
+      var key = "";
+      database.ref('users').orderByChild("vecka").equalTo(data).on('child_added', function(snapshot) {
+     
+            database.ref('users/' + snapshot.key).update({
+                status: nystatus
+            });
+    });
+    
+      
+        
+      
+
+    
+      
+    //   database.ref.update(bokning);
+      
     //dbdata.find(x=>x
     // byt true till false och false till true på data.vecka == data
 
