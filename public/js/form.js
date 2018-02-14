@@ -2,9 +2,11 @@ document.getElementById("bookingdate").value = new Date().toLocaleDateString('sv
 
 $('#bookingform').submit(function () {
     if (inValidWeekFormat()) {
-        alert("Felaktig veckoinmatning");
+        $("#errorMsg").text("Felaktig veckoinmatning")
+        $("#myModal").modal();
         return false;
     }
+    $("#submitbtn").prop("disabled", true);
 
     var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum", "status"];
     var inputs = Array.from(document.forms["bookingform"].getElementsByTagName("input"));
@@ -14,17 +16,17 @@ $('#bookingform').submit(function () {
     });
 
 
-    // reslut = true, week, null, empty
     $.post("/nybokning", obj, function (result) {
+        $("#submitbtn").prop("disabled", false);
         if (result === "week") {
             $("#errorMsg").text("Tyvärr är veckan/veckorna redan bokade!");
             $("#myModal").modal();
         }
-        else if (result === "week52"){
+        else if (result === "week52") {
             $("#errorMsg").text("Ange vecka 1-52!");
             $("#myModal").modal();
         }
-        else if (result === "null" || result === "empty"){
+        else if (result === "null" || result === "empty") {
             $("#errorMsg").text("Ett eller flera fält är tomt/tomma!")
             $("#myModal").modal();
         }

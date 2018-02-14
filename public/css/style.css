@@ -45,12 +45,6 @@ li{
     background-color: lightgray;
 }
 
-/* label{
-    display: block;
-} */
-
-
-
 
 
 /* Booking form & calendar styling
@@ -96,4 +90,9 @@ li{
 
 .nonConfirmedDate {
     border: 1px dotted orangered;
+}
+
+#booking-modal {
+    margin-left: auto; margin-right: auto;
+    margin-top: 10em;
 }
