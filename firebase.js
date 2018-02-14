@@ -46,7 +46,7 @@ exports.adminconfirm = async function (data) {
     if (bokning.status == false) {
         nystatus = true;
     }
-    
+
     database.ref('users').orderByChild("vecka").equalTo(data).on('child_added', function (snapshot) {
         database.ref('users/' + snapshot.key).update({
             status: nystatus
@@ -110,7 +110,7 @@ exports.getDb = async function (res) {
     dbdata.forEach(x => {
         var tmp = x.vecka.split(',');
         tmp.forEach(y => {
-            bookedWeeks.push(y);
+            bookedWeeks.push({ week: y, confirmed: x.status });
         });
     });
     res.send(bookedWeeks);

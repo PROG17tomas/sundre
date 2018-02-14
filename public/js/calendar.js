@@ -31,13 +31,13 @@ $(document).ready(loadBookedWeeks());
 
 function loadBookedWeeks() {
     $.get("/calendardata", function (bookedWeeks) {
-        console.log(bookedWeeks);
+        // console.log(bookedWeeks);
         var dates = [];
         bookedWeeks.forEach(x => {
-            dates.push(getDateFromWeeks(x - 1));
+            dates.push({ date: getDateFromWeeks(x.week - 1), confirmed: x.confirmed });
         });
-        console.log("Veckor test!");
-        console.log(dates);
+        // console.log("Veckor test!");
+        // console.log(dates);
         drawbookedWeeks(dates);
     });
 }
@@ -52,17 +52,24 @@ function drawbookedWeeks(dates) {
 
 
     var confirmedDate = [];
+    var nonConfirmedDate = [];
     dates.forEach(x => {
-        var date = moment(x).date();
-        var month = moment(x).month();
-        console.log(date);
-        for (let i = 0; i < 7; i++) {
-            confirmedDate.push(new Date(currentYear, month, date + i).getTime());
+        var date = moment(x.date).date();
+        var month = moment(x.date).month();
+        //console.log(date);
+        if (x.confirmed) {
+            for (let i = 0; i < 7; i++) {
+                confirmedDate.push(new Date(currentYear, month, date + i).getTime());
+            }
         }
-
+        else {
+            for (let i = 0; i < 7; i++) {
+                nonConfirmedDate.push(new Date(currentYear, month, date + i).getTime());
+            }
+        }
     });
 
-    var nonConfirmedDate = [];
+
     // for (let i = 0; i < 7; i++) {
     //     nonConfirmedDate.push(new Date(currentYear, 4, 14 + i).getTime());
     // }
