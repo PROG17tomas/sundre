@@ -83,10 +83,12 @@ exports.sendpost = async function (data) {
         });
     });
 
-    var weeksToBook = data.vecka.split(',');
+    var weeksToBook = data.vecka.split(',').filter(onlyUnique);
+    if (weeksToBook.toString() != data.vecka.split(',').toString()) failed = "week52";
     weeksToBook.forEach(i => {
-        if (!(i >= 1 && i <= 52)) failed = "week52";
-        if (bookedWeeks.find(x => x.trim() == i.trim())) failed = "week";
+        if (!isInt(i)) failed = "week52";
+        else if (!(i >= 1 && i <= 52)) failed = "week52";
+        else if (bookedWeeks.find(x => x.trim() == i.trim())) failed = "week";
     });
     console.log("Veckor att boka: " + weeksToBook);
     console.log("Redan bokade veckor: " + bookedWeeks);
@@ -97,6 +99,7 @@ exports.sendpost = async function (data) {
         return failed;
     }
     else {          // validation succeeded
+        //data.vecka = String(weeksToBook);
         data.status = false;
         database.ref('users').push(data);
         return "success";
@@ -133,4 +136,12 @@ async function getData() {
         });
     });
     return dbdata;
+}
+
+function isInt(value) {
+    return !isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
 }
