@@ -81,6 +81,11 @@ li{
     font-size: 18px;
 }
 
+.booking-times {
+    color: red;
+    margin-left: 2em;
+}
+
 #yearcal{
     min-height: 100vh;
 }
