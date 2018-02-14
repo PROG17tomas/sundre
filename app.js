@@ -33,14 +33,14 @@ app.post('/admin41confirm', async function (req, res) {
 // ================
 app.post('/nybokning', async function (req, res) {
     var result = await fire.sendpost(req.body);
-    if(result) {
+    if (result === "success") {
         fs.readFile('public/html/success.html', function (err, data) {
             if (err) throw err;
             res.send(data);
         });
     }
     else {
-        res.send(false);
+        res.send(result);
     }
 });
 // End

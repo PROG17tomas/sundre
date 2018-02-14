@@ -56,15 +56,17 @@ exports.adminconfirm = async function (data) {
 }
 
 exports.sendpost = async function (data) {
-    let failed = false;
+    let failed = null;
 
     // kolla om någon input är tom
     // ===========================
     Object.keys(data).forEach(function (key, index) {
-        //console.log(req.body[key]);
         if (data[key] == null) {
             console.log("validation failed");
-            failed = true;
+            failed = "null";
+        }
+        else if (data[key].trim() == "") {
+            failed = "empty";
         }
     });
     // ===========================
@@ -83,21 +85,21 @@ exports.sendpost = async function (data) {
 
     var weeksToBook = data.vecka.split(',');
     weeksToBook.forEach(i => {
-        if (!(i >= 1 && i <= 52)) failed = true;
-        if (bookedWeeks.find(x => x.trim() == i.trim())) failed = true;
+        if (!(i >= 1 && i <= 52)) failed = "week52";
+        if (bookedWeeks.find(x => x.trim() == i.trim())) failed = "week";
     });
     console.log("Veckor att boka: " + weeksToBook);
     console.log("Redan bokade veckor: " + bookedWeeks);
     // ===========================
 
 
-    if (failed) {   // validation failed
-        return false;
+    if (failed != null) {   // validation failed
+        return failed;
     }
     else {          // validation succeeded
         data.status = false;
         database.ref('users').push(data);
-        return true;
+        return "success";
     }
 }
 

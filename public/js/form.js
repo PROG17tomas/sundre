@@ -8,10 +8,16 @@ $('#bookingform').submit(function () {
         obj[props[i]] = x.value;
     });
 
+
+    // reslut = true, week, null, empty
     $.post("/nybokning", obj, function (result) {
-        if (result != false)
-            $("#container").replaceWith(result);
-        else
+        if (result === "week")
             alert("Tyvärr är veckan redan bokad!");
+        else if (result === "week52")
+            alert("Ange vecka 1-52!");
+        else if (result === "null" || result === "empty")
+            alert("Ett eller flera fält är tomt/tomma!");
+        else
+            $("#container").replaceWith(result);
     });
 });
