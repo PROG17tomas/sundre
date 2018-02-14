@@ -69,30 +69,21 @@ function drawbookedWeeks(dates) {
         }
     });
 
-
-    // for (let i = 0; i < 7; i++) {
-    //     nonConfirmedDate.push(new Date(currentYear, 4, 14 + i).getTime());
-    // }
-
     $('#yearcal').calendar({
         displayWeekNumber: true,
         enableRangeSelection: true,
         minDate: dateNow,
+        language: "sv",
         customDayRenderer: function (element, date) {
             confirmedDate.forEach(x => {
                 if (date.getTime() == x) {
                     $(element).addClass('confirmedDate');
-                    // $(element).css('background-color', 'red');
-                    // $(element).css('color', 'white');
-                    // $(element).css('border-radius', '15px');
                 }
             });
 
             nonConfirmedDate.forEach(x => {
                 if (date.getTime() == x) {
                     $(element).addClass('nonConfirmedDate');
-                    // $(element).css('background-color', 'yellow');
-                    // $(element).css('border-radius', '15px');
                 }
             });
         }
