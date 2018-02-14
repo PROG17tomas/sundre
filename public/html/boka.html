@@ -3,7 +3,8 @@
         <div class="col-md-4">
             <form name="bookingform" id="bookingform" onsubmit="return false">
                 <div class="form-group">
-                    <label for="week">Vecka/or:</label><span class="booking-times">(ankomst/avresa lördag kl. 12)</span>
+                    <label for="week">Vecka/or:</label>
+                    <span class="booking-times">(ankomst/avresa lördag kl. 12)</span>
                     <input id="week" class="form-control" placeholder='Exempel: 29,30' onchange="calcPrice()" required />
                 </div>
 
@@ -66,7 +67,7 @@
             </form>
 
 
-            <div class="booking-form-text">                
+            <div class="booking-form-text">
                 När du skickat din bokning kommer du att få ett mail som bekräfar din bokning där du också kommer att få all info du behöver
                 för att betala bokningen, hur du tillträder(nyckel etc). Bekräftelsemailet kan ta någon eller några dagar
                 men ditt bokningsdatum avgör turordningen.
@@ -80,4 +81,26 @@
     </div>
     <script src="../js/bootstrap-year-calendar.js"></script>
     <script src="../js/calendar.js"></script>
+    <!--Modal-->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="modal fade" id="myModal">
+                <div class="model-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="errorMsg" class="text-danger"></h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Se över och försök igen.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>

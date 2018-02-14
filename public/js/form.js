@@ -16,12 +16,18 @@ $('#bookingform').submit(function () {
 
     // reslut = true, week, null, empty
     $.post("/nybokning", obj, function (result) {
-        if (result === "week")
-            alert("Tyvärr är veckan redan bokad!");
-        else if (result === "week52")
-            alert("Ange vecka 1-52!");
-        else if (result === "null" || result === "empty")
-            alert("Ett eller flera fält är tomt/tomma!");
+        if (result === "week") {
+            $("#errorMsg").text("Tyvärr är veckan/veckorna redan bokade!");
+            $("#myModal").modal();
+        }
+        else if (result === "week52"){
+            $("#errorMsg").text("Ange vecka 1-52!");
+            $("#myModal").modal();
+        }
+        else if (result === "null" || result === "empty"){
+            $("#errorMsg").text("Ett eller flera fält är tomt/tomma!")
+            $("#myModal").modal();
+        }
         else
             $("#container").replaceWith(result);
     });
@@ -45,7 +51,7 @@ function calcPrice() {
         else if (i >= 25 && i <= 32) price += w25_32;
         else if (i >= 1 && i <= 52) price += w33_01;
     });
-    
+
     document.getElementById("price").value = price;
 }
 
