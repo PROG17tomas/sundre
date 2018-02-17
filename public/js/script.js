@@ -10,6 +10,12 @@ $("#bokahtml").on("click", function () {
     });
 });
 
+$("#gallerihtml").on("click", function () {
+    $.get("/galleri", function (file) {
+        $("#container").replaceWith(file);
+    });
+});
+
 $("#villkorhtml").on("click", function () {
     $.get("/villkor", function (file) {
         $("#container").replaceWith(file);
@@ -33,3 +39,9 @@ $("#historiahtml").on("click", function () {
         $("#container").replaceWith(file);
     });
 });
+
+// $("#temp_bokahtml").on("click", function () {
+//     $.get("/bokning", function (file) {
+//         $("#container").replaceWith(file);
+//     });
+// });

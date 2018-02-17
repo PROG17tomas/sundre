@@ -1,17 +1,38 @@
 $(document).ready(loadData());
 
 function loadData() {
+    document.getElementById("t1").innerHTML = "<th>Vecka</th><th>Belopp</th><th>Förnamn</th><th>Efternamn</th><th>Personnr</th><th>Adress</th><th>Postnr</th><th>Ort</th><th>Telefon</th><th>Mail</th><th>Datum</th><th>Verifierad</th>";
     $.get("/admin41data", function (dbdata) {
-        var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum"];
-        console.log("från klient");
-        console.log(dbdata);
+        var props = ["vecka", "belopp", "förnamn", "efternamn", "pnr", "adress", "postnr", "ort", "telefon", "mail", "datum", "status"];
+        //console.log("från klient");
+        //console.log(dbdata);
         var v = dbdata.map((x, i) => {
             var rad = "<tr>";
+            let btnType = "";
             for (var j = 0; j < props.length; j++) {
-                rad += "<td>" + x[props[j]] + "</td>";
+                if (props[j] == "status") {
+                    if (x[props[j]]) btnType = "btn-success";
+                    else btnType = "btn-danger";
+                    rad += `<td><button id="id'${x["vecka"]}'" onclick="confirm('${x["vecka"]}')" class="btn ${btnType}">${x[props[j]]}</button></td>`;
+                }
+                else
+                    rad += "<td>" + x[props[j]] + "</td>";
             }
             rad += "</tr>";
             document.getElementById("t1").innerHTML += rad;
         });
     });
+}
+
+function confirm(week) {
+    $.post('/admin41confirm', { "week": week });
+    var element = document.getElementById(`id'${week}'`);
+    if (element.classList[1] == "btn-danger") {
+        element.className = "btn btn-success";
+        element.textContent = "true";
+    }
+    else {
+        element.className = "btn btn-danger";
+        element.textContent = "false";
+    }
 }

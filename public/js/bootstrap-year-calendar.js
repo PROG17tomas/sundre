@@ -932,6 +932,15 @@
 			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			weekShort: 'W',
 			weekStart:0
+		},
+		sv: {
+			days: ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"],
+			daysShort: ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"],
+			daysMin: ["Sö", "Må", "Ti", "On", "To", "Fr", "Lö", "Sö"],
+			months: ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"],
+			monthsShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+			weekShort: 'V',
+			weekStart:1
 		}
 	};
 	
@@ -942,4 +951,21 @@
 			$(this).calendar();
 		});
 	});
+	($(function() {
+		var currentYear = new Date().getFullYear();
+	
+		$('#calendar').calendar({ 
+			disabledDays: [
+				new Date(currentYear,1,2),
+				new Date(currentYear,1,3),
+				new Date(currentYear,1,8),
+				new Date(currentYear,1,9),
+				new Date(currentYear,1,10),
+				new Date(currentYear,1,11),
+				new Date(currentYear,1,13),
+				new Date(currentYear,1,14),
+				new Date(currentYear,1,15)
+			]
+		});
+	}))();
  }(window.jQuery));
